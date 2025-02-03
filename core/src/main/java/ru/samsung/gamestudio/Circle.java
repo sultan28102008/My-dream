@@ -68,4 +68,10 @@ public class Circle {
         batch.draw(texture[textureCounter], x, y, size, size);
     }
 
+    void dispose() {
+        for (Texture value : texture) {
+            value.dispose();
+        }
+    }
+
 }
