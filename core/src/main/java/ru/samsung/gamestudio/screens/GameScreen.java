@@ -7,11 +7,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import ru.samsung.gamestudio.GamesSettings;
 import ru.samsung.gamestudio.Main;
 import ru.samsung.gamestudio.characters.Bird;
+import ru.samsung.gamestudio.characters.TubePair;
 
 public class GameScreen implements Screen {
 
     Main main;
     Bird bird;
+
+    TubePair tubePair;
 
     public GameScreen(Main main) {
         this.main = main;
@@ -21,6 +24,8 @@ public class GameScreen implements Screen {
             100, 100,
             5
         );
+
+        tubePair = new TubePair(75, 425);
     }
 
     @Override
@@ -43,6 +48,7 @@ public class GameScreen implements Screen {
 
         main.batch.begin();
         bird.draw(main.batch);
+        tubePair.draw(main.batch);
         main.batch.end();
 
     }
