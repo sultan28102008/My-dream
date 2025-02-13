@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Bird {
 
+    private int frameIdx;
+
     int x;
     int y;
     int width;
@@ -56,9 +58,11 @@ public class Bird {
     }
 
     public void draw(SpriteBatch batch) {
-        int frameFactor = 30;
-        textureCounter = (textureCounter + 1) % (textures.length * frameFactor);
-        batch.draw(textures[textureCounter / frameFactor], x, y, width, height);
+        frameIdx += 1;
+        if (frameIdx % 5 == 0) {
+            textureCounter = (textureCounter + 1) % textures.length;
+        }
+        batch.draw(textures[textureCounter], x, y, width, height);
     }
 
     public void dispose() {

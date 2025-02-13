@@ -14,7 +14,7 @@ public class GameScreen implements Screen {
     Main main;
     Bird bird;
 
-    TubePair tubePair;
+    TubePair[] tubePairs;
 
     public GameScreen(Main main) {
         this.main = main;
@@ -25,7 +25,11 @@ public class GameScreen implements Screen {
             5
         );
 
-        tubePair = new TubePair(75, 425);
+        tubePairs = new TubePair[3];
+        for (int i = 0; i < tubePairs.length; i++) {
+            tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
+        }
+
     }
 
     @Override
@@ -40,6 +44,10 @@ public class GameScreen implements Screen {
             bird.onClick();
         }
 
+        for (TubePair tubePair : tubePairs) {
+            tubePair.move();
+        }
+
         bird.fly();
 
         ScreenUtils.clear(1f, 1f, 1f, 1f);
@@ -48,7 +56,9 @@ public class GameScreen implements Screen {
 
         main.batch.begin();
         bird.draw(main.batch);
-        tubePair.draw(main.batch);
+        for (TubePair tubePair : tubePairs) {
+            tubePair.draw(main.batch);
+        }
         main.batch.end();
 
     }
