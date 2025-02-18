@@ -46,6 +46,9 @@ public class GameScreen implements Screen {
 
         for (TubePair tubePair : tubePairs) {
             tubePair.move();
+            if (tubePair.isHit(bird)) {
+                System.out.println("Bird was hit");
+            }
         }
 
         bird.fly();

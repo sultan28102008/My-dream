@@ -50,7 +50,22 @@ public class TubePair {
             while (newGapY == gapY) {
                 newGapY = generateRandomY();
             }
+            gapY = newGapY;
         }
+    }
+
+    public boolean isHit(Bird bird) {
+        boolean isHitByX = bird.x + bird.width >= x && bird.x <= x + tubeWidth;
+        // down tube collision
+        if (isHitByX && bird.y <= gapY - GamesSettings.GAP_HEIGHT / 2f) {
+            return true;
+        }
+
+        // upper tube collision
+        if (isHitByX && bird.y + bird.height >= gapY + GamesSettings.GAP_HEIGHT / 2f) {
+            return true;
+        }
+        return false;
     }
 
     public void draw(SpriteBatch batch) {
