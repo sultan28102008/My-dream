@@ -14,6 +14,8 @@ public class GameScreen implements Screen {
     Main main;
     Bird bird;
 
+    int gamePoints;
+
     TubePair[] tubePairs;
 
     public GameScreen(Main main) {
@@ -29,6 +31,8 @@ public class GameScreen implements Screen {
         for (int i = 0; i < tubePairs.length; i++) {
             tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
         }
+
+        gamePoints = 0;
 
     }
 
@@ -48,6 +52,10 @@ public class GameScreen implements Screen {
             tubePair.move();
             if (tubePair.isHit(bird)) {
                 System.out.println("Bird was hit");
+                main.setScreen(main.restartScreen);
+            } else if (tubePair.needAddPoint(bird)) {
+                gamePoints += 1;
+                System.out.println("Game points: " + gamePoints);
             }
         }
 

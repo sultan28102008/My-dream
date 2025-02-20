@@ -27,7 +27,7 @@ public class Main extends Game {
 
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen();
-        restartScreen = new RestartScreen();
+        restartScreen = new RestartScreen(this);
 
         setScreen(gameScreen);
     }

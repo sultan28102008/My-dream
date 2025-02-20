@@ -19,6 +19,8 @@ public class TubePair {
     Texture textureUpperTube;
     Texture textureLowerTube;
 
+    boolean isPointReceived;
+
     int generateRandomY() {
         Random rand = new Random();
         return rand.nextInt(
@@ -39,6 +41,8 @@ public class TubePair {
 
         textureLowerTube = new Texture("tubes/tube.png");
         textureUpperTube = new Texture("tubes/tube_flipped.png");
+
+        isPointReceived = false;
     }
 
     public void move() {
@@ -51,6 +55,8 @@ public class TubePair {
                 newGapY = generateRandomY();
             }
             gapY = newGapY;
+
+            isPointReceived = false;
         }
     }
 
@@ -63,6 +69,14 @@ public class TubePair {
 
         // upper tube collision
         if (isHitByX && bird.y + bird.height >= gapY + GamesSettings.GAP_HEIGHT / 2f) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean needAddPoint(Bird bird) {
+        if (!isPointReceived && bird.x > x + tubeWidth) {
+            isPointReceived = true;
             return true;
         }
         return false;
