@@ -8,11 +8,14 @@ import ru.samsung.gamestudio.GamesSettings;
 import ru.samsung.gamestudio.Main;
 import ru.samsung.gamestudio.characters.Bird;
 import ru.samsung.gamestudio.characters.TubePair;
+import ru.samsung.gamestudio.components.MovingBackground;
 
 public class GameScreen implements Screen {
 
     Main main;
     Bird bird;
+
+    MovingBackground movingBackground;
 
     int gamePoints;
 
@@ -31,6 +34,8 @@ public class GameScreen implements Screen {
         for (int i = 0; i < tubePairs.length; i++) {
             tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
         }
+
+        movingBackground = new MovingBackground();
 
         gamePoints = 0;
 
@@ -52,13 +57,14 @@ public class GameScreen implements Screen {
             tubePair.move();
             if (tubePair.isHit(bird)) {
                 System.out.println("Bird was hit");
-                main.setScreen(main.restartScreen);
+                // main.setScreen(main.restartScreen);
             } else if (tubePair.needAddPoint(bird)) {
                 gamePoints += 1;
                 System.out.println("Game points: " + gamePoints);
             }
         }
 
+        movingBackground.move();
         bird.fly();
 
         ScreenUtils.clear(1f, 1f, 1f, 1f);
@@ -66,10 +72,13 @@ public class GameScreen implements Screen {
         main.batch.setProjectionMatrix(main.camera.combined);
 
         main.batch.begin();
+
+        movingBackground.draw(main.batch);
         bird.draw(main.batch);
         for (TubePair tubePair : tubePairs) {
             tubePair.draw(main.batch);
         }
+
         main.batch.end();
 
     }
@@ -97,5 +106,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         bird.dispose();
+        movingBackground.dispose();
     }
 }
