@@ -9,6 +9,7 @@ import ru.samsung.gamestudio.Main;
 import ru.samsung.gamestudio.characters.Bird;
 import ru.samsung.gamestudio.characters.TubePair;
 import ru.samsung.gamestudio.components.MovingBackground;
+import ru.samsung.gamestudio.components.PointCounter;
 
 public class GameScreen implements Screen {
 
@@ -16,6 +17,7 @@ public class GameScreen implements Screen {
     Bird bird;
 
     MovingBackground movingBackground;
+    PointCounter pointCounter;
 
     int gamePoints;
 
@@ -36,6 +38,7 @@ public class GameScreen implements Screen {
         }
 
         movingBackground = new MovingBackground();
+        pointCounter = new PointCounter(GamesSettings.SCREEN_WIGHT - 400, GamesSettings.SCREEN_HEIGHT - 20);
 
         gamePoints = 0;
 
@@ -57,7 +60,7 @@ public class GameScreen implements Screen {
             tubePair.move();
             if (tubePair.isHit(bird)) {
                 System.out.println("Bird was hit");
-                // main.setScreen(main.restartScreen);
+                main.setScreen(main.restartScreen);
             } else if (tubePair.needAddPoint(bird)) {
                 gamePoints += 1;
                 System.out.println("Game points: " + gamePoints);
@@ -78,6 +81,7 @@ public class GameScreen implements Screen {
         for (TubePair tubePair : tubePairs) {
             tubePair.draw(main.batch);
         }
+        pointCounter.draw(main.batch, gamePoints);
 
         main.batch.end();
 
@@ -107,5 +111,6 @@ public class GameScreen implements Screen {
     public void dispose() {
         bird.dispose();
         movingBackground.dispose();
+        pointCounter.dispose();
     }
 }
