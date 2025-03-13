@@ -37,7 +37,7 @@ public class GameScreen implements Screen {
             tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
         }
 
-        movingBackground = new MovingBackground();
+        movingBackground = new MovingBackground("backgrounds/game_bg.png");
         pointCounter = new PointCounter(GamesSettings.SCREEN_WIGHT - 400, GamesSettings.SCREEN_HEIGHT - 20);
 
         gamePoints = 0;

@@ -13,8 +13,8 @@ public class MovingBackground {
 
     int speed = 2;
 
-    public MovingBackground() {
-        texture = new Texture("backgrounds/game_bg.png");
+    public MovingBackground(String texturePath) {
+        texture = new Texture(texturePath);
         textureX1 = 0;
         textureX2 = GamesSettings.SCREEN_WIGHT;
     }
