@@ -26,10 +26,10 @@ public class Main extends Game {
         camera.setToOrtho(false, GamesSettings.SCREEN_WIGHT, GamesSettings.SCREEN_HEIGHT);
 
         gameScreen = new GameScreen(this);
-        menuScreen = new MenuScreen();
+        menuScreen = new MenuScreen(this);
         restartScreen = new RestartScreen(this);
 
-        setScreen(gameScreen);
+        setScreen(menuScreen);
     }
 
     @Override

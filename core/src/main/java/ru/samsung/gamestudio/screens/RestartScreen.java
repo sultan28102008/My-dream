@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import ru.samsung.gamestudio.Main;
 import ru.samsung.gamestudio.characters.TubePair;
 import ru.samsung.gamestudio.components.MovingBackground;
+import ru.samsung.gamestudio.components.PointCounter;
 import ru.samsung.gamestudio.components.TextButton;
 
 public class RestartScreen implements Screen {
@@ -16,6 +17,9 @@ public class RestartScreen implements Screen {
     TextButton buttonRestart;
     TextButton buttonMenu;
     MovingBackground background;
+    PointCounter pointCounter;
+
+    int gamePoints;
 
     public RestartScreen(Main main) {
         this.main = main;
@@ -23,6 +27,11 @@ public class RestartScreen implements Screen {
         buttonMenu = new TextButton(100, 150, "Menu");
         buttonRestart = new TextButton(100, 400, "Restart");
         background = new MovingBackground("backgrounds/restart_bg.png");
+        pointCounter = new PointCounter(700, 500);
+    }
+
+    public void setGamePoints(int gamePoints) {
+        this.gamePoints = gamePoints;
     }
 
     @Override
@@ -46,6 +55,7 @@ public class RestartScreen implements Screen {
         background.draw(main.batch);
         buttonRestart.draw(main.batch);
         buttonMenu.draw(main.batch);
+        pointCounter.draw(main.batch, gamePoints);
 
         main.batch.end();
 
@@ -56,10 +66,10 @@ public class RestartScreen implements Screen {
             Vector3 vector = main.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (buttonRestart.isHit((int) vector.x, (int) vector.y)) {
-                System.out.println("Button restart is pressed");
+                main.setScreen(main.gameScreen);
             }
             if (buttonMenu.isHit((int) vector.x, (int) vector.y)) {
-                System.out.println("Button menu is pressed");
+                main.setScreen(main.menuScreen);
             }
 
         }

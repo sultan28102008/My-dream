@@ -26,6 +26,13 @@ public class GameScreen implements Screen {
     public GameScreen(Main main) {
         this.main = main;
 
+        movingBackground = new MovingBackground("backgrounds/game_bg.png");
+        pointCounter = new PointCounter(GamesSettings.SCREEN_WIGHT - 400, GamesSettings.SCREEN_HEIGHT - 20);
+    }
+
+    @Override
+    public void show() {
+
         bird = new Bird(
             100, GamesSettings.SCREEN_HEIGHT / 2 - 100 / 2,
             100, 100,
@@ -37,15 +44,7 @@ public class GameScreen implements Screen {
             tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
         }
 
-        movingBackground = new MovingBackground("backgrounds/game_bg.png");
-        pointCounter = new PointCounter(GamesSettings.SCREEN_WIGHT - 400, GamesSettings.SCREEN_HEIGHT - 20);
-
         gamePoints = 0;
-
-    }
-
-    @Override
-    public void show() {
 
     }
 
@@ -59,11 +58,9 @@ public class GameScreen implements Screen {
         for (TubePair tubePair : tubePairs) {
             tubePair.move();
             if (tubePair.isHit(bird)) {
-                System.out.println("Bird was hit");
-                main.setScreen(main.restartScreen);
+                endGame();
             } else if (tubePair.needAddPoint(bird)) {
                 gamePoints += 1;
-                System.out.println("Game points: " + gamePoints);
             }
         }
 
@@ -85,6 +82,11 @@ public class GameScreen implements Screen {
 
         main.batch.end();
 
+    }
+
+    public void endGame() {
+        main.restartScreen.setGamePoints(gamePoints);
+        main.setScreen(main.restartScreen);
     }
 
     @Override
