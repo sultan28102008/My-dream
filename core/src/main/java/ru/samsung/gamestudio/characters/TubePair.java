@@ -16,19 +16,15 @@ public class TubePair {
     int distanceBetweenTubes;
     int speed = 10;
 
-    Texture textureUpperTube;
+
     Texture textureLowerTube;
 
     boolean isPointReceived;
 
     int generateRandomY() {
         Random rand = new Random();
-        return rand.nextInt(
-            GamesSettings.SCREEN_HEIGHT
-                - 2 * (GamesSettings.TUBE_PADDING
-                + GamesSettings.GAP_HEIGHT / 2)
-        ) + GamesSettings.TUBE_PADDING
-            + GamesSettings.GAP_HEIGHT / 2;
+        return rand.nextInt(100
+        ) + GamesSettings.TUBE_PADDING+GamesSettings.GAP_HEIGHT/2;
     }
 
     public TubePair(int tubeWidth, int tubeHeight, int countOfTubes, int tubeIdx) {
@@ -40,7 +36,7 @@ public class TubePair {
         gapY = generateRandomY();
 
         textureLowerTube = new Texture("tubes/tube.png");
-        textureUpperTube = new Texture("tubes/tube_flipped.png");
+
 
         isPointReceived = false;
     }
@@ -67,10 +63,8 @@ public class TubePair {
             return true;
         }
 
-        // upper tube collision
-        if (isHitByX && bird.y + bird.height >= gapY + GamesSettings.GAP_HEIGHT / 2f) {
-            return true;
-        }
+
+
         return false;
     }
 
@@ -83,12 +77,12 @@ public class TubePair {
     }
 
     public void draw(SpriteBatch batch) {
-        batch.draw(textureUpperTube, x, gapY + GamesSettings.GAP_HEIGHT / 2f, tubeWidth, tubeHeight);
+
         batch.draw(textureLowerTube, x, gapY - GamesSettings.GAP_HEIGHT / 2f - tubeHeight, tubeWidth, tubeHeight);
     }
 
     public void dispose() {
-        textureUpperTube.dispose();
+
         textureLowerTube.dispose();
     }
 

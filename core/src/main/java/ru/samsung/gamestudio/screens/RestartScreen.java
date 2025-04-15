@@ -17,6 +17,7 @@ public class RestartScreen implements Screen {
     TextButton buttonRestart;
     TextButton buttonMenu;
     MovingBackground background;
+    MovingBackground background1;
     PointCounter pointCounter;
 
     int gamePoints;
@@ -26,7 +27,8 @@ public class RestartScreen implements Screen {
 
         buttonMenu = new TextButton(100, 150, "Menu");
         buttonRestart = new TextButton(100, 400, "Restart");
-        background = new MovingBackground("backgrounds/restart_bg.png");
+        background = new MovingBackground("backgrounds/background-1.png");
+        background1 = new MovingBackground("backgrounds/background-2.png",1);
         pointCounter = new PointCounter(700, 500);
     }
 
@@ -45,13 +47,15 @@ public class RestartScreen implements Screen {
         handleInput();
 
         background.move();
+        background1.move();
 
-        ScreenUtils.clear(1f, 1f, 1f, 1f);
+        ScreenUtils.clear(0.68f, 0.87f, 0.39f, 1f);
         main.camera.update();
         main.batch.setProjectionMatrix(main.camera.combined);
 
         main.batch.begin();
 
+        background1.draw(main.batch);
         background.draw(main.batch);
         buttonRestart.draw(main.batch);
         buttonMenu.draw(main.batch);

@@ -18,6 +18,12 @@ public class MovingBackground {
         textureX1 = 0;
         textureX2 = GamesSettings.SCREEN_WIGHT;
     }
+    public MovingBackground(String texturePath,int speed) {
+        this.speed=speed;
+        texture = new Texture(texturePath);
+        textureX1 = 0;
+        textureX2 = GamesSettings.SCREEN_WIGHT;
+    }
 
     public void move() {
         textureX1 -= speed;

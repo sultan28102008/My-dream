@@ -14,10 +14,10 @@ public class Bird {
 
     int speed;
 
-    final int maxHeightOfFly = 100;
+    final int maxHeightOfFly = 200;//высота прыжка
     int heightOfFly;
     boolean isFlying;
-
+    boolean canFly;
     Texture[] textures;
     int textureCounter;
 
@@ -29,18 +29,27 @@ public class Bird {
         this.speed = speed;
 
         textureCounter = 0;
-        textures = new Texture[] {
-            new Texture("birdTiles/bird0.png"),
-            new Texture("birdTiles/bird1.png"),
-            new Texture("birdTiles/bird2.png"),
-            new Texture("birdTiles/bird1.png"),
+        textures = new Texture[]{
+            new Texture("birdTiles/tile1.png"),
+            new Texture("birdTiles/tile2.png"),
+            new Texture("birdTiles/tile3.png"),
+            new Texture("birdTiles/tile4.png"),
+            new Texture("birdTiles/tile5.png"),
+            new Texture("birdTiles/tile6.png"),
+            new Texture("birdTiles/tile7.png"),
+            new Texture("birdTiles/tile8.png")
+
         };
 
     }
 
     public void onClick() {
-        isFlying = true;
-        heightOfFly = y + maxHeightOfFly;
+        if(canFly==true){
+            isFlying = true;
+            heightOfFly = y + maxHeightOfFly;
+            canFly=false;
+        }
+
     }
 
     public void fly() {
@@ -48,7 +57,13 @@ public class Bird {
         if (isFlying) {
             y += speed;
         } else {
-            y -= speed;
+            if (y <= 70) {
+                y = 70;
+                canFly=true;
+            } else {
+                y -= speed;
+            }
+
         }
 
         if (y > heightOfFly) {

@@ -35,13 +35,13 @@ public class GameScreen implements Screen {
 
         bird = new Bird(
             100, GamesSettings.SCREEN_HEIGHT / 2 - 100 / 2,
-            100, 100,
-            5
+            100, 140,
+            8
         );
 
         tubePairs = new TubePair[3];
         for (int i = 0; i < tubePairs.length; i++) {
-            tubePairs[i] = new TubePair(75, 425, tubePairs.length, i);
+            tubePairs[i] = new TubePair(75, 210, tubePairs.length, i);
         }
 
         gamePoints = 0;
