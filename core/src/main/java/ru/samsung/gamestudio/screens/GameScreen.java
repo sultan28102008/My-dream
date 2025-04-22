@@ -52,7 +52,9 @@ public class GameScreen implements Screen {
     public void render(float delta) {
 
         if (Gdx.input.justTouched()) {
-            bird.onClick();
+          if ( bird.onClick()){
+              main.audioManager.jumpSound.play(0.1f);
+          }
         }
 
         for (TubePair tubePair : tubePairs) {
@@ -86,6 +88,7 @@ public class GameScreen implements Screen {
 
     public void endGame() {
         main.restartScreen.setGamePoints(gamePoints);
+        main.audioManager.hitSound.play(0.3f);
         main.setScreen(main.restartScreen);
     }
 

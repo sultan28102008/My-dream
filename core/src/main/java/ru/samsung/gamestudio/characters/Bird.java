@@ -43,13 +43,14 @@ public class Bird {
 
     }
 
-    public void onClick() {
-        if(canFly==true){
+    public boolean onClick() {
+        if (canFly == true) {
             isFlying = true;
             heightOfFly = y + maxHeightOfFly;
-            canFly=false;
+            canFly = false;
+            return true;
         }
-
+        return false;
     }
 
     public void fly() {
@@ -59,7 +60,7 @@ public class Bird {
         } else {
             if (y <= 70) {
                 y = 70;
-                canFly=true;
+                canFly = true;
             } else {
                 y -= speed;
             }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import ru.samsung.gamestudio.managers.AudioManager;
 import ru.samsung.gamestudio.screens.GameScreen;
 import ru.samsung.gamestudio.screens.MenuScreen;
 import ru.samsung.gamestudio.screens.RestartScreen;
@@ -15,6 +16,7 @@ public class Main extends Game {
     public GameScreen gameScreen;
     public MenuScreen menuScreen;
     public RestartScreen restartScreen;
+    public AudioManager audioManager;
 
     public SpriteBatch batch;
     public OrthographicCamera camera;
@@ -24,6 +26,7 @@ public class Main extends Game {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GamesSettings.SCREEN_WIGHT, GamesSettings.SCREEN_HEIGHT);
+        audioManager = new AudioManager();
 
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);

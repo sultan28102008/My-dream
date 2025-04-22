@@ -27,6 +27,7 @@ public class MenuScreen implements Screen {
         startButton = new TextButton(200, 200, "Start");
         exitButton = new TextButton(750, 200, "Exit");
         titleTexture = new Texture("title.png");
+        main.audioManager.backgroundMusic.play();
 
     }
 
