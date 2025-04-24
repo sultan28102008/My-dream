@@ -16,15 +16,16 @@ public class TubePair {
     int distanceBetweenTubes;
     int speed = 10;
 
-
+    int selectedTexture;
     Texture textureLowerTube;
+    Texture stoneTube;
 
     boolean isPointReceived;
 
     int generateRandomY() {
         Random rand = new Random();
         return rand.nextInt(100
-        ) + GamesSettings.TUBE_PADDING+GamesSettings.GAP_HEIGHT/2;
+        ) + GamesSettings.TUBE_PADDING + GamesSettings.GAP_HEIGHT / 2;
     }
 
     public TubePair(int tubeWidth, int tubeHeight, int countOfTubes, int tubeIdx) {
@@ -36,8 +37,7 @@ public class TubePair {
         gapY = generateRandomY();
 
         textureLowerTube = new Texture("tubes/tube.png");
-
-
+        stoneTube = new Texture("tubes/tube1.png");
         isPointReceived = false;
     }
 
@@ -45,6 +45,7 @@ public class TubePair {
         x -= speed;
         if (x <= -tubeWidth) {
             x = GamesSettings.SCREEN_WIGHT + distanceBetweenTubes;
+            selectedTexture = (int) (Math.random() * 2);
 
             int newGapY = generateRandomY();
             while (newGapY == gapY) {
@@ -64,7 +65,6 @@ public class TubePair {
         }
 
 
-
         return false;
     }
 
@@ -77,8 +77,14 @@ public class TubePair {
     }
 
     public void draw(SpriteBatch batch) {
+        Texture texture;
+        if (selectedTexture == 1){
+            texture = textureLowerTube;
+        } else {
+            texture = stoneTube;
+        }
 
-        batch.draw(textureLowerTube, x, gapY - GamesSettings.GAP_HEIGHT / 2f - tubeHeight, tubeWidth, tubeHeight);
+        batch.draw(texture, x, gapY - GamesSettings.GAP_HEIGHT / 2f - tubeHeight, tubeWidth, tubeHeight);
     }
 
     public void dispose() {
