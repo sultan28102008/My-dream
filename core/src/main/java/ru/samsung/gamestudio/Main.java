@@ -10,12 +10,14 @@ import ru.samsung.gamestudio.managers.AudioManager;
 import ru.samsung.gamestudio.screens.GameScreen;
 import ru.samsung.gamestudio.screens.MenuScreen;
 import ru.samsung.gamestudio.screens.RestartScreen;
+import ru.samsung.gamestudio.screens.WinScreen;
 
 public class Main extends Game {
 
     public GameScreen gameScreen;
     public MenuScreen menuScreen;
     public RestartScreen restartScreen;
+    public WinScreen winScreen;
     public AudioManager audioManager;
 
     public SpriteBatch batch;
@@ -31,6 +33,7 @@ public class Main extends Game {
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);
         restartScreen = new RestartScreen(this);
+        winScreen = new WinScreen(this);
 
         setScreen(menuScreen);
     }

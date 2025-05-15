@@ -76,7 +76,7 @@ public class GameScreen implements Screen {
         } else {
             chest.move();
             if (chest.isHit(bird)) {
-                endGame();
+                winGame();
             }
         }
         movingBackground.move();
@@ -108,6 +108,10 @@ public class GameScreen implements Screen {
         main.audioManager.hitSound.play(0.3f);
         main.setScreen(main.restartScreen);
     }
+    public void winGame(){
+        main.setScreen(main.winScreen);
+    }
+
 
     @Override
     public void resize(int width, int height) {
